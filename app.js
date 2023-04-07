@@ -13,7 +13,7 @@ const runCrawl = async () => {
   })
 
   const page = await browser.newPage()
-  let crawingDate = new Date('04/01/2023')
+  let crawingDate = new Date('06/27/2008')
 
   while (true) {
     await page.goto(
@@ -72,7 +72,8 @@ const runCrawl = async () => {
         }
       })
       if (allPrize.prize7.includes('...')) {
-        await sleep(60000)
+        await sleep(5000)
+				crawingDate.setDate(crawingDate.getDate() + 1)
         continue
       }
 
@@ -80,7 +81,6 @@ const runCrawl = async () => {
         .push({ time: dayjs(crawingDate.getTime()).format('DD/MM/YYYY'), allPrizes: allPrize })
         .write()
     } catch {}
-
     crawingDate.setDate(crawingDate.getDate() + 1)
   }
 }
